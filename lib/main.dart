@@ -1,28 +1,22 @@
 import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
+import "package:audioplayers/audioplayers.dart";
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: XylophonePage(),
-  ));
-}
+void main() => runApp(MaterialApp(
+      home: XylophonePage(),
+    ));
 
-class XylophonePage extends StatefulWidget {
-  @override
-  _XylophonePageState createState() => _XylophonePageState();
-  final _player = AudioCache()..fixedPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
-}
+class XylophonePage extends StatelessWidget {
+  final _player = AudioCache()
+    ..fixedPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
 
-class _XylophonePageState extends State<XylophonePage> {
   Widget _createMusicLine({Color color: Colors.red, int soundNumber}) =>
       Expanded(
         child: MaterialButton(
-          color: color,
-          onPressed: () {
-            widget._player.play('note$soundNumber.wav');
-          }
-        ),
+            color: color,
+            onPressed: () {
+              _player.play('note$soundNumber.wav');
+            }),
       );
 
   @override
